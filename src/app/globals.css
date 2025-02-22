@@ -1,21 +1,183 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* src/app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --neon-red: #ff073a;
+  --dark-bg: #000000;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--neon-red);
+  font-family: 'DotGothic16', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  /* Center the page content by default */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Scanlines effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2% { transform: translate(2px, 0) skew(0deg); }
+  4% { transform: translate(-2px, 0) skew(0deg); }
+  60% { transform: translate(0, 0) skew(5deg); }
+}
+
+/* Glitch text shadows */
+[data-text]::before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 2px 0 #ff073a;
+  background: black;
+  overflow: hidden;
+  clip: rect(0,900px,0,0);
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+[data-text]::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -2px 0 #00f7ff;
+  background: black;
+  overflow: hidden;
+  clip: rect(0,900px,0,0);
+  animation: noise-anim 1s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+  0% { clip: rect(61px, 9999px, 119px, 0); }
+  5% { clip: rect(33px, 9999px, 41px, 0); }
+  10% { clip: rect(121px, 9999px, 115px, 0); }
+  15% { clip: rect(88px, 9999px, 59px, 0); }
+  20% { clip: rect(42px, 9999px, 78px, 0); }
+  25% { clip: rect(75px, 9999px, 99px, 0); }
+  30% { clip: rect(11px, 9999px, 98px, 0); }
+  35% { clip: rect(3px, 9999px, 94px, 0); }
+  40% { clip: rect(65px, 9999px, 57px, 0); }
+  45% { clip: rect(120px, 9999px, 102px, 0); }
+  50% { clip: rect(137px, 9999px, 84px, 0); }
+  55% { clip: rect(122px, 9999px, 68px, 0); }
+  60% { clip: rect(28px, 9999px, 100px, 0); }
+  65% { clip: rect(99px, 9999px, 113px, 0); }
+  70% { clip: rect(103px, 9999px, 73px, 0); }
+  75% { clip: rect(136px, 9999px, 122px, 0); }
+  80% { clip: rect(44px, 9999px, 77px, 0); }
+  85% { clip: rect(28px, 9999px, 59px, 0); }
+  90% { clip: rect(97px, 9999px, 110px, 0); }
+  95% { clip: rect(147px, 9999px, 137px, 0); }
+  100% { clip: rect(137px, 9999px, 57px, 0); }
+}
+
+/* Keep body overflow hidden */
+body {
+  overflow-x: hidden;
+}
+
+canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.relative.z-10 {
+  position: relative;
+  z-index: 10;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* Increase text contrast */
+body {
+  text-shadow: 0 0 8px rgba(255, 7, 58, 0.3);
+}
+
+/* Matrix canvas opacity */
+canvas {
+  opacity: 0.7;
+}
+
+/* Optional: a reusable center container class */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Add these new styles */
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+}
+
+.glitch {
+  position: relative;
+  padding: 0.5em 0;
+}
+
+/* Increase glitch effect intensity */
+[data-text]::before, [data-text]::after {
+  animation-duration: 0.8s;
+  text-shadow: 4px 0 var(--neon-red);
+}
+
+[data-text]::after {
+  text-shadow: -4px 0 #00f7ff;
 }
