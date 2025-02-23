@@ -265,7 +265,7 @@ export default function Home() {
                 "You exist here..."<br/>
                 "Present time... present place..."
               </div>
-              {/* eslint-enable react/no-unescaped-entities */}
+              
             </motion.div>
           )}
 
@@ -292,13 +292,14 @@ export default function Home() {
                 </button>
                 
               </motion.div>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <br/>
-              {/* eslint-disable react/no-unescaped-entities */}
+            
               <div className="text-4xl text-red-500/60 mt-12">
                 "All the world's information will be free..."<br/>
                 "Present your access code..."
               </div>
-              {/* eslint-enable react/no-unescaped-entities */}
+              
             </motion.div>
           )}
 
@@ -326,12 +327,11 @@ export default function Home() {
                 
               </motion.div>
               <br/>
-              {/* eslint-disable react/no-unescaped-entities */}
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <div className="text-4xl text-red-500/60 mt-12">
                 "The system is all in code..."<br/>
                 "Ghosts in the machine..."
               </div>
-              {/* eslint-enable react/no-unescaped-entities */}
             </motion.div>
           )}
         </AnimatePresence>
